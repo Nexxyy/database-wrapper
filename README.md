@@ -100,6 +100,14 @@ database.createAsyncWithJson("uniqueValue", "table").thenAccept((voidAction) -> 
 <strong>Loading data</strong>
 <br/>
 
+```java
+database.eachPrimaryKey("table").forEach((uniqueValue) -> {
+    Object fromDb = database.get(uniqueValue, "column", "table");
+    // do your thing here
+});
+```
+
+
 ### Maven
 ```xml
 <dependency>
@@ -119,3 +127,5 @@ database.createAsyncWithJson("uniqueValue", "table").thenAccept((voidAction) -> 
     <scope>provided</scope>
 </dependency>
 ```
+
+### Any questions call me on discord or open an issue. discord: devnexy
