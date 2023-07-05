@@ -1,7 +1,8 @@
-# 🌵 database-wrapper
+# 🌵 database-wrapperㅤ[![](https://jitpack.io/v/Nexxyy/database-wrapper.svg)](https://jitpack.io/#Nexxyy/database-wrapper)
 A very old project of mine but that I think will save some lives... it is a system that facilitates the use of databases (MySQL and SQLITE), based on primary keys, its use is recommended for simple and non-relational projects (but it is suitable for passing the limits) It is aimed at the spigot
 ## How to use?
 First of all, create a constructor for your database, it could be in your main class or somewhere else, because you'll need it...
+
 
 #### StorageBuilder
 ```java
@@ -110,22 +111,30 @@ database.eachPrimaryKey("table").forEach((uniqueValue) -> {
 
 ### Maven
 ```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
 <dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.22</version>
-    <scope>provided</scope>
+    <groupId>com.github.Nexxyy</groupId>
+    <artifactId>database-wrapper</artifactId>
+    <version>main-baeccf8578-1</version>
 </dependency>
 ```
 
 ### Gradle
 ```gradle
-<dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <version>1.18.22</version>
-    <scope>provided</scope>
-</dependency>
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+
+dependencies {
+  implementation 'com.github.Nexxyy:database-wrapper:main-baeccf8578-1'
+}
 ```
 
 ### Any questions call me on discord or open an issue. discord: devnexy
