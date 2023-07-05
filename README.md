@@ -62,6 +62,44 @@ public class YourStorageClass extends DatabaseModel {
 
 }
 ```
+
+#### The database object (This part is cool)
+Come on, the database object is basically the queries but with methods and much better, let's face it, with it we can save objects in our database, what do you mean objects? If my object only has primary objects such as String, int, UUID, List and the like, it is possible to place it in the database without having to create several columns for this. We also have Async methods for asynchronous developments (Based onCompleteFuture<K>)
+<br/>
+<br/>
+<strong>Standard methods</strong>
+```java
+database.set("uniqueValue", "column", "int/string/any", "table");
+```
+```java
+database.get("uniqueValue", "column", "table");
+```
+```java
+database.delete("uniqueValue", "table");
+```
+
+<br/>
+<strong>Saving objects + Async + Blocked Queue</strong>
+<br/>
+
+```java
+database.setAsyncWithJson("uniqueValue", new PlayerAccount("playerName", 1000), "table")
+    .thenAccept((voidAction) -> System.out.println("OK"));
+```
+
+```java
+database.createAsync("uniqueValue", "table").thenAccept((voidAction) -> System.out.println("OK"));
+```
+
+```java
+database.createAsyncWithJson("uniqueValue", "table").thenAccept((voidAction) -> {
+    database.saveLater("uniqueValue", new PlayerAccount("DevNexy", 1000), "table");
+});
+```
+<br/>
+<strong>Loading data</strong>
+<br/>
+
 ### Maven
 ```xml
 <dependency>
