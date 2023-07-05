@@ -27,6 +27,41 @@ Database database = new StorageBuilder(DatabaseType.SQLITE) // Or MYSQL
 ```java
 .useSingleThreadQueue(10) // 10 is the number of seconds
 ```
+
+#### Predefined class for storage (selectDatabaseModel)
+<strong>selectDatabaseModel(new Class())</strong> This new Class() is a class that the user will create containing the table creation methods and other things he wants to implement... to use it, you need to extend the DatabaseModel and pass the @StoreVoid annotation so that when the class is initialized it can identify the methods to create the query
+
+```java
+import com.github.nexy.database.annotations.StoreVoid;
+import com.github.nexy.database.components.DataComponent;
+import com.github.nexy.database.components.Table;
+import com.github.nexy.database.constants.ComponentType;
+import com.github.nexy.database.model.DatabaseModel;
+
+import java.util.Arrays;
+
+public class YourStorageClass extends DatabaseModel {
+
+    @StoreVoid
+    public void initAnyTable() {
+        this.createTable(new Table(
+          "master_table",
+          Arrays.asList(
+            new DataComponent("column", ComponentType.TEXT),
+            new DataComponent("column2", ComponentType.INTEGER)
+          )
+        ));
+        // do your thing here
+    }
+
+    @StoreVoid
+    public void initOtherTable() {
+        this.createJsonTable(new Table("helloA")); // I'll explain later
+        // do your thing here
+    }
+
+}
+```
 ### Maven
 ```xml
 <dependency>
