@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +28,7 @@ public class Database implements DatabasePerfecter, DatabaseAsync, StandardActio
         preCreation.forEach(table -> {
             switch (table.getTableType()) {
                 case DEFAULT:
-                    this.createTable(table.getName(), table.getTableComponents().toArray(new DataComponent[0]));
+                    this.createTable(table.getName(), table.getTableComponents());
                     break;
                 case JSON:
                     this.createJsonTable(table.getName());
@@ -90,7 +91,8 @@ public class Database implements DatabasePerfecter, DatabaseAsync, StandardActio
     @Override
     public Object get(String uniqueValue, String column, String table) {
         try {
-            String getQuery = String.format("select * from %s where unique_value = `%s`;", table, uniqueValue);
+            String getQuery = String.format("select * from %s where unique_value = '%s';", table, uniqueValue);
+            System.out.println(getQuery);
             PreparedStatement preparedStatement = this.connection.prepareStatement(getQuery);
             ResultSet resultSet = preparedStatement.executeQuery();
             Object object = new Object();

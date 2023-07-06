@@ -10,9 +10,9 @@ public class Table {
 
     private final String name;
     private final TableType tableType;
-    private List<DataComponent> tableComponents;
+    private DataComponent[] tableComponents;
 
-    public Table(String name, List<DataComponent> tableComponents) {
+    public Table(String name, DataComponent... tableComponents) {
         this.name = name;
         this.tableType = TableType.DEFAULT;
         this.tableComponents = tableComponents;

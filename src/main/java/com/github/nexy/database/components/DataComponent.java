@@ -12,7 +12,7 @@ public class DataComponent {
     private final ComponentType componentType;
 
     public String adjuster(int index) {
-        return String.format(index >= 1 ? ", " : "" + "`%s` %s", this.columnName, this.componentType.name());
+        return String.format((index >= 1 ? ", " : "") + "`%s` %s", this.columnName, this.componentType.name());
     }
 
 }

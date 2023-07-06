@@ -7,6 +7,7 @@ import com.github.nexy.database.example.component.PlayerAccount;
 import com.github.nexy.database.example.storage.StoreClass;
 
 import java.io.File;
+import java.util.concurrent.ExecutionException;
 
 public class Launcher {
 
@@ -17,9 +18,21 @@ public class Launcher {
           .selectDatabaseModel(new StoreClass())
           .build();
 
-        database.createAsyncWithJson("AAAAAAAAAA", "helloA").thenAccept((voidAction) -> {
-            database.saveLater("AAAAAAAAAA", new PlayerAccount("DevNexy", 1000), "helloA");
-        });
+        try {
+            PlayerAccount withJson = database.getWithJson("DevNexy", PlayerAccount.class, "helloA");
+            System.out.println(withJson);
+        } catch (ExecutionException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+//        database.eachPrimaryKey("table").forEach((uniqueValue) -> {
+//            Object fromDb = database.get(uniqueValue, "column", "table");
+//            // do your thing here
+//        });
+//
+//        database.createAsyncWithJson("AAAAAAAAAA", "helloA").thenAccept((voidAction) -> {
+//            database.saveLater("AAAAAAAAAA", new PlayerAccount("DevNexy", 1000), "helloA");
+//        });
     }
 
 }
