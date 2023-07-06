@@ -119,7 +119,7 @@ database.eachPrimaryKey("table").forEach((uniqueValue) -> {
 <dependency>
     <groupId>com.github.Nexxyy</groupId>
     <artifactId>database-wrapper</artifactId>
-    <version>main-b1130853e1-1</version>
+    <version>main-2b4549e269-1</version>
 </dependency>
 ```
 
@@ -133,7 +133,7 @@ allprojects {
 }
 
 dependencies {
-  implementation 'com.github.Nexxyy:database-wrapper:main-b1130853e1-1'
+  implementation 'com.github.Nexxyy:database-wrapper:main-2b4549e269-1'
 }
 ```
 
