@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -70,7 +69,6 @@ public class Database implements DatabasePerfecter, DatabaseAsync, StandardActio
             }
 
             createTableQuery = createTableQuery + ");";
-            System.out.println(createTableQuery);
             this.autoClosablePreparedStatement(createTableQuery);
         } catch (Exception var) {
             System.out.println("ERROR! Could not create table " + tableName + " by exception: " + var.getClass().getName());
@@ -92,7 +90,6 @@ public class Database implements DatabasePerfecter, DatabaseAsync, StandardActio
     public Object get(String uniqueValue, String column, String table) {
         try {
             String getQuery = String.format("select * from %s where unique_value = '%s';", table, uniqueValue);
-            System.out.println(getQuery);
             PreparedStatement preparedStatement = this.connection.prepareStatement(getQuery);
             ResultSet resultSet = preparedStatement.executeQuery();
             Object object = new Object();
