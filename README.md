@@ -47,10 +47,8 @@ public class YourStorageClass extends DatabaseModel {
     public void initAnyTable() {
         this.createTable(new Table(
           "master_table",
-          Arrays.asList(
             new DataComponent("column", ComponentType.TEXT),
             new DataComponent("column2", ComponentType.INTEGER)
-          )
         ));
         // do your thing here
     }
